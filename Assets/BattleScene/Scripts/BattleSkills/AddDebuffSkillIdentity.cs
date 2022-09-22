@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/SkillIdentity/SimpleSkill", fileName = "SimpleSkill")]
-public class SimpleSkillIdentity : SkillIdentity
+[CreateAssetMenu(menuName = "ScriptableObject/SkillIdentity/AddDebuffSkillIdentity", fileName = "AddDebuffSkillIdentity")]
+public class AddDebuffSkillIdentity : SkillIdentity
 {
     [SerializeField] private int minRepeat=1;
     [SerializeField] private int maxRepeat=1;

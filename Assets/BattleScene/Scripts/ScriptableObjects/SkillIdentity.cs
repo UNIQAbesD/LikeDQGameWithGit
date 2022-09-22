@@ -8,6 +8,4 @@ public class SkillIdentity : ScriptableObject
     public string Name { get{ return _Name; } }
 
     public virtual SkillSubst skillSubst { get { return new SkillSubst(); } }
-    
- 
 }

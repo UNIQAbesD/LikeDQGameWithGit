@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using static UnityEngine.UI.CanvasScaler;
 using Palmmedia.ReportGenerator.Core.Parser.Filtering;
 
-//MP isDead‚È‚Ç‚ÌŠT”O‚ª·‚è‚Ü‚ê‚Ä‚È‚¢
+//MP isDead Buff‚ÌŒp‘±ƒ^[ƒ“‚È‚Ç‚ÌŠT”O‚ª·‚è‚Ü‚ê‚Ä‚È‚¢
 public delegate void AnAction();
 
 public class BattleField
