@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//const int ATKUP_IntegID = 0;
+
 public class BuffIdentity : ScriptableObject
 {
     // Start is called before the first frame update
     [SerializeField] protected string _Name;
     public string Name { get { return _Name; } }
 
-    [SerializeField] protected int _maxRank;
+    [SerializeField] protected int _maxRank=1;
     public int maxRank { get { return _maxRank; } }
 
-    [SerializeField] protected int _minRank;
+    [SerializeField] protected int _minRank=0;
     public int minRank { get { return _minRank; } }
 
-    [SerializeField] protected bool _isPermanence;
+    [SerializeField] protected bool _isPermanence=false;
     public bool isPermanence { get { return _isPermanence; } }
 
-    [SerializeField] protected int _integrateID;
+    [SerializeField] protected int _integrateID=-1;
     public int integrateID { get { return _integrateID; } }
 
     [SerializeField] protected BuffParam _buffParam;
@@ -27,12 +29,27 @@ public class BuffIdentity : ScriptableObject
 
 public class BuffParam
 {
+    protected string _Name="None";
+    public string Name { get { return _Name; } }
+
+    protected int _maxRank=1;
+    public int maxRank { get { return _maxRank; } }
+
+    protected int _minRank=0;
+    public int minRank { get { return _minRank; } }
+
+    protected bool _isPermanence=false;
+    public bool isPermanence { get { return _isPermanence; } }
+    
+    protected int _integrateID=-1;
+    public int integrateID { get { return _integrateID; } }
+
     public BattleUnit whosBuff;
     public int lastTurn;
     public int rank;
-    public BuffIdentity identity;
+    //public BuffIdentity identity;
 
-    public virtual void whenApplySameIDBuff(BuffParam skillEfcParam) { }
+    public virtual BuffParam whenApplySameIDBuff(BuffParam skillEfcParam) { return this; }
 
 
     //WhenCalcSkill-----------------------------------------------------------------
@@ -129,10 +146,17 @@ public class BuffParam
     {
         return new List<ParamFilter<int>>();
     }
-    public BuffParam(BattleUnit whosBuff,BuffIdentity buffIdentity)
+    public BuffParam(BattleUnit whosBuff,string Name,int maxRank,int minRank,bool isPermanence,int integrateID)
     {
-        identity = buffIdentity;
+        //identity = buffIdentity;
+        this.whosBuff = whosBuff;
+        this._Name = Name;
+        this._maxRank = maxRank;
+        this._minRank = minRank;
+        this._isPermanence = isPermanence;
+        this._integrateID = integrateID;
         lastTurn = 0;
         rank = 0;
     }
+    public BuffParam(BattleUnit whosBuff): this(whosBuff, "None", 1, 0, false, -1){}
 }

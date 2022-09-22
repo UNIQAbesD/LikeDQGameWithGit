@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Threading;
+using UnityEngine.Assertions;
 
 public class SkillSubst 
 {
@@ -10,7 +11,7 @@ public class SkillSubst
     public int minRepeat;
     public int maxRepeat;
     public int mp;
-    public SkillElement skillElement = SkillElement.None;
+    public ElementType skillElement = ElementType.None;
     public SkillCategory skillCategory;
     public BuffResistElement buffElement = BuffResistElement.None;
     public SkillOUnitType efcOUnitType=SkillOUnitType.OneFoe;
@@ -86,19 +87,23 @@ public class SkillSubst_EfcFuncs : SkillSubst
 
 
 
-public class SkillEfcFunc 
+public class SkillEfcFunc
 {
-    
+
     protected AdditionalEfcTrigger _addefcTrigger;
-    public AdditionalEfcTrigger addefcTrigger { get{ return _addefcTrigger; } }
+    public AdditionalEfcTrigger addefcTrigger { get { return _addefcTrigger; } }
     //public BattleParamFilte ExSkillFilter;
     //public BattleParamFilter AcSkillFilter;
-    
-    public virtual ExSkillEfc fun(BattleUnit sUnit,BattleUnit oUnit,BattleField bf) 
+
+    public virtual ExSkillEfc fun(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
     {
         return new ExSkillEfc();
     }
 
+    public SkillEfcFunc(AdditionalEfcTrigger addEfcTrigger)
+    {
+        _addefcTrigger = addEfcTrigger;
+    }
 }
 
 public class SkillEfcFunc_deligate : SkillEfcFunc 
@@ -107,6 +112,11 @@ public class SkillEfcFunc_deligate : SkillEfcFunc
     public override ExSkillEfc fun(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
     {
         return func(sUnit,oUnit,bf);
+    }
+    public SkillEfcFunc_deligate(Func<BattleUnit, BattleUnit, BattleField, ExSkillEfc> func
+        ,AdditionalEfcTrigger addEfcTrigger):base(addEfcTrigger)
+    {
+        this.func = func;
     }
 }
 
@@ -164,8 +174,10 @@ public class ExSkillEfc
     public int minMPDamage;
     public int maxMPDamage;
     public float accuracy;
-    public List<BuffParam> buffParams;
-    public List<float> buffPossiblity;
+    private List<BuffParam> _buffParams;
+    public List<BuffParam> buffParams { get { return new List<BuffParam>(_buffParams); } }
+    private List<float> _buffPossiblity;
+    public List<float> buffPossiblity { get { return new List<float>(_buffPossiblity); } }
 
 
     public AcSkillEfc makeAcSkillEfc() 
@@ -203,13 +215,16 @@ public class ExSkillEfc
         }
         acSkillEfc.mpDamage = UnityEngine.Random.Range(minMPDamage, maxMPDamage + 1);
 
-        for (int i=0;i<buffParams.Count;i++) 
+        Debug.Assert(_buffParams.Count == _buffPossiblity.Count);
+
+
+        for (int i=0;i<_buffParams.Count;i++) 
         {
-            if (buffParams[i].rank != 0 & buffParams[i].lastTurn != 0) 
+            if (_buffParams[i].rank != 0 & _buffParams[i].lastTurn != 0) 
             {
-                if (buffPossiblity[i] * 100 > UnityEngine.Random.Range(0, 100)) 
+                if (_buffPossiblity[i] * 100 > UnityEngine.Random.Range(0, 100)) 
                 {
-                    acSkillEfc.buffParam.Add(buffParams[i]);
+                    acSkillEfc.buffParam.Add(_buffParams[i]);
                 }
             }
         }
@@ -217,6 +232,36 @@ public class ExSkillEfc
         return acSkillEfc;
     }
 
+    public void AddBuff(BuffParam buffParam,float possivility) 
+    {
+        _buffParams.Add(buffParam);
+        _buffPossiblity.Add(possivility);
+    }
+    public void RemoveBuff(BuffParam buffParam) 
+    {
+        int buffIndex=0;
+        foreach (BuffParam aBuff in _buffParams) 
+        {
+            if (aBuff == buffParam) 
+            {
+                _buffParams.RemoveAt(buffIndex);
+                break;
+            }
+            buffIndex++;
+        }
+        _buffPossiblity.RemoveAt(buffIndex);  
+    }
+    public void AddBuff(int buffIndex,BuffParam buffParam, float possivility)
+    {
+        _buffParams[buffIndex] =(buffParam);
+        _buffPossiblity[buffIndex] = (possivility);
+    }
+    public void RemoveAtBuff(int buffIndex)
+    {
+        
+        buffParams.RemoveAt(buffIndex);
+        _buffPossiblity.RemoveAt(buffIndex);
+    }
 
 
 
@@ -228,8 +273,8 @@ public class ExSkillEfc
         minMPDamage = 0;
         maxMPDamage = 0;
         accuracy = 0;
-        buffParams = new List<BuffParam>();
-        buffPossiblity = new List<float>();
+        _buffParams = new List<BuffParam>();
+        _buffPossiblity = new List<float>();
     }
 }
 

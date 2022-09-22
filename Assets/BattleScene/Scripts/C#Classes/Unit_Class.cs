@@ -28,19 +28,19 @@ public class BattleUnit
         //buff‚ÌXVˆ—‚ğs‚¤
         foreach (BuffParam aSkillEfcBuff in acSkillEfc.buffParam)
         {
-            if (aSkillEfcBuff.identity.integrateID < 0) 
+            if (aSkillEfcBuff.integrateID < 0) 
             {
                 _buffParams.Add(aSkillEfcBuff);
             }
             else 
             {
                 bool isIntegrated = false;
-                foreach (BuffParam aUnitBuff in acSkillEfc.buffParam)
+                for (int i=0;i< acSkillEfc.buffParam.Count;i++)
                 {
-                    
-                    if (aUnitBuff.identity.integrateID == aSkillEfcBuff.identity.integrateID) 
+                    BuffParam aUnitBuff=acSkillEfc.buffParam[i];
+                    if (aUnitBuff.integrateID == aSkillEfcBuff.integrateID) 
                     {
-                        aUnitBuff.whenApplySameIDBuff(aSkillEfcBuff);
+                        acSkillEfc.buffParam[i]=aUnitBuff.whenApplySameIDBuff(aSkillEfcBuff);
                         isIntegrated=true;
                         break;
                     }
