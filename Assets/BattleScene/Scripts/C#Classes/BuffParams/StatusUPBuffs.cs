@@ -76,7 +76,7 @@ public class Buff_StatusUP : BuffParam
         else { return (int)(value * 2 / (2 - buff.rank)); }
     }
 
-    public Buff_StatusUP(BattleUnit whosBuff,int targetStatus) : base(whosBuff)
+    public Buff_StatusUP(int targetStatus) :base()
     {
         //identity = buffIdentity;
         if (targetStatus <= (int)stat.SPD)

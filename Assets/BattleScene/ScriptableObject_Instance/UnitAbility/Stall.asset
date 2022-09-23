@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e12c88c83cc0bed45a6987ecc1beca36, type: 3}
   m_Name: Stall
   m_EditorClassIdentifier: 
-  _Name: 
+  _Name: Stall
   _filterPriority: -100

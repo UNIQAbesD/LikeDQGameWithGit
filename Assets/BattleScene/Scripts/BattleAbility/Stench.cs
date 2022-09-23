@@ -6,8 +6,21 @@ using UnityEngine;
 public class Stench : AbilityIdentity//‚ ‚­‚µ‚ã‚¤
 {
     [SerializeField] private int _filterPriority = -100;
-    public virtual List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter(BattleUnit whosAbility, BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit, BattleField bf)
+    public override List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter(BattleUnit whosAbility, BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit, BattleField bf)
     {
         return new List<ParamFilter<AcSkillEfc>>();
+    }
+
+    public override List<ParamFilter<int>> AfterOneTimeApplyEventFilter(BattleUnit whosAbility, List<AcSkillEfc> acSkillEfcs, BattleField bf)
+    {
+
+        foreach (var aSkillEfc in acSkillEfcs) 
+        {
+            if (aSkillEfc.sUnit==whosAbility&aSkillEfc.hpDamage>0) 
+            {
+
+            }
+        }
+        return new List<ParamFilter<int>>();
     }
 }

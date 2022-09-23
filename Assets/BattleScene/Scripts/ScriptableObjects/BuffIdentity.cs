@@ -126,10 +126,9 @@ public class BuffParam
     {
         return new List<ParamFilter<int>>();
     }
-    public BuffParam(BattleUnit whosBuff,string Name,int maxRank,int minRank,bool isPermanence,int integrateID,CostBuffTurnTiming costBuffTurnTiming)
+    public BuffParam(string Name,int maxRank,int minRank,bool isPermanence,int integrateID,CostBuffTurnTiming costBuffTurnTiming)
     {
         //identity = buffIdentity;
-        this.whosBuff = whosBuff;
         this._Name = Name;
         this._maxRank = maxRank;
         this._minRank = minRank;
@@ -139,7 +138,7 @@ public class BuffParam
         lastTurn = 0;
         rank = 0;
     }
-    public BuffParam(BattleUnit whosBuff):this(whosBuff, "None", 1, 0, false, -1,CostBuffTurnTiming.RoundEnd){}
+    public BuffParam():this( "None", 1, 0, false, -1,CostBuffTurnTiming.RoundEnd){}
 }
 
 

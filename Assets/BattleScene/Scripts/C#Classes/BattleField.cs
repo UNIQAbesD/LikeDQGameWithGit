@@ -66,7 +66,7 @@ public class BattleField
 
         }
 
-        cmdAct(cmdDatas[turnCount]);
+        actCmd(cmdDatas[turnCount]);
         turnCount++;
 
         if (turnCount == cmdDatas.Count) 
@@ -104,7 +104,7 @@ public class BattleField
 
 
 
-    private void cmdAct((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)cmdData) //Arg :unit SkillIdentity
+    private void actCmd((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)cmdData) //Arg :unit SkillIdentity
     {
         List<SkillEfcFunc> tempSkillEfcFuncs;
 
@@ -116,6 +116,20 @@ public class BattleField
         {
             aEvent.fun(cmdData, beforeCmdActEventFilters);
         }
+
+        simpleActCmd(cmdData);
+
+        List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> afterCmdActEventFilters = AfterActCmdEventFilter(cmdData);
+        foreach (var aEvent in afterCmdActEventFilters)
+        {
+            aEvent.fun(cmdData,afterCmdActEventFilters);
+        }
+    }
+
+    public void simpleActCmd((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)//EventFilter‚ª“®‚©‚È‚¢
+    {
+        List<SkillEfcFunc> tempSkillEfcFuncs;
+        SkillSubst skillSubst = cmdData.skill.skillSubst;
 
         while (skillSubst != null)
         {
@@ -132,7 +146,7 @@ public class BattleField
                 for (int v = 0; v < tempSkillEfcFuncs.Count; v++)
                 {
                     SkillEfcFunc skillEfcFunc = skillSubst.skillEfcFuncs[v];
-                    List<AcSkillEfc> acSkillEfcs =new List<AcSkillEfc>();
+                    List<AcSkillEfc> acSkillEfcs = new List<AcSkillEfc>();
                     foreach (BattleUnit aUnit in oUnits)
                     {
                         acSkillEfcs.Add(makeFilteredValue(ExSkillEfcFilter(cmdData.sUnit, skillSubst, aUnit), skillEfcFunc.fun(cmdData.sUnit, cmdData.oUnit, this)).makeAcSkillEfc());
@@ -142,15 +156,7 @@ public class BattleField
             }
             skillSubst = skillSubst.nextSkill;
         }
-
-        List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> afterCmdActEventFilters = AfterActCmdEventFilter(cmdData);
-        foreach (var aEvent in afterCmdActEventFilters)
-        {
-            aEvent.fun(cmdData,afterCmdActEventFilters);
-        }
     }
-
-
 
     public void applySkillEfc(List< AcSkillEfc> acSkillEfcs) 
     {
@@ -168,11 +174,6 @@ public class BattleField
     }
 
 
-
-    public void simpleActCmd() //Arg : unit SkillSubst
-    {
-        
-    }
 
    
 
