@@ -10,6 +10,8 @@ using Palmmedia.ReportGenerator.Core.Parser.Filtering;
 //MP isDead Buff‚ÌŒp‘±ƒ^[ƒ“‚È‚Ç‚ÌŠT”O‚ª·‚è‚Ü‚ê‚Ä‚È‚¢
 public delegate void AnAction();
 
+
+
 public class BattleField
 {
     private List<BattleUnit> _party1;

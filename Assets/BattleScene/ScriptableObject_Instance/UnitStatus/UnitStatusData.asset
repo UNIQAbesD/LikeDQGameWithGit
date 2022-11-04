@@ -22,5 +22,5 @@ MonoBehaviour:
     _types: 100000000e000000
     _heavy: 0
     _skills:
-    - {fileID: 11400000, guid: c303956cfb0a4994380dc4dc528f867b, type: 2}
+    - {fileID: 11400000, guid: 7b54cf44f9ea73b4ea8803484145f09e, type: 2}
     _ability: {fileID: 11400000, guid: 9eb48ed6cb01d4a49ac146ae49dbc880, type: 2}

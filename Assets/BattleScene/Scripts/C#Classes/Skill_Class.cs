@@ -330,15 +330,25 @@ public enum SkillCategory
     Phisical,
     Magical,
     Status,
-
 }
 
 public enum AdditionalEfcTrigger
 {
     SameUnit,
     DamagedUnit,
-    effctedUnit
+    effctedUnit,
+    Hit
 }
+
+public enum NextSkillTrigger
+{
+    None,
+    Hit,
+    Damaged,
+    effcted,
+    DamagedAll
+}
+
 public enum SkillOUnitType
 {
     User,

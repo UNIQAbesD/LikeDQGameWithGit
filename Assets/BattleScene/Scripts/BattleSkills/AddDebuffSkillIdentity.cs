@@ -83,23 +83,23 @@ public class AddDebuffSkillIdentity : SkillIdentity
                                 switch (additionalBuff)
                                 {
                                     case AdditionalBuff.ATKUP:
-                                        buffParam = new Buff_StatusUP(oUnit,0);
+                                        buffParam = new Buff_StatusUP(0);
                                         break;
                                     case AdditionalBuff.DEFUP:
-                                        buffParam = new Buff_StatusUP(oUnit, 1);
+                                        buffParam = new Buff_StatusUP( 1);
                                         break;
                                     case AdditionalBuff.SATKUP:
-                                        buffParam = new Buff_StatusUP(oUnit, 2);
+                                        buffParam = new Buff_StatusUP( 2);
                                         break;
                                     case AdditionalBuff.SDEFUP:
-                                        buffParam = new Buff_StatusUP(oUnit, 3);
+                                        buffParam = new Buff_StatusUP( 3);
                                         break;
                                     case AdditionalBuff.SPDUP:
-                                        buffParam = new Buff_StatusUP(oUnit, 4);
+                                        buffParam = new Buff_StatusUP( 4);
                                         break;
                                     default:
                                         Debug.Log("AdditionalBuff‚ÌŽw’è‚ª‘z’èŠO");
-                                        buffParam = new Buff_StatusUP(oUnit, 0);
+                                        buffParam = new Buff_StatusUP( 0);
                                         break;
                                 }
                                 buffParam.rank = addBuffRank;
