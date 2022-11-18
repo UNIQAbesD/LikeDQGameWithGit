@@ -30,13 +30,13 @@ public class SkillSubst
 
 
     //WhenMakeSkillEfc--------------------------------------------------------------
-    public virtual List<ExSkillEfc> ExSkillEfcFilter(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
+    public virtual List<ParamFilter<ExSkillEfc>> ExSkillEfcFilter(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
     {
-        return new List<ExSkillEfc>();
+        return new List<ParamFilter<ExSkillEfc>>();
     }
-    public virtual List<AcSkillEfc> AcSkillEfcFilter(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
+    public virtual List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter(BattleUnit sUnit, BattleUnit oUnit, BattleField bf)
     {
-        return new List<AcSkillEfc>();
+        return new List<ParamFilter<AcSkillEfc>>();
     }
 
 

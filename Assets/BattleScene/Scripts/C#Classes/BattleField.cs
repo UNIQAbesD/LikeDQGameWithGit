@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-using Unity.VisualScripting;
-using static UnityEngine.UI.CanvasScaler;
-using Palmmedia.ReportGenerator.Core.Parser.Filtering;
+
 
 //MP isDead Buff‚ÌŒp‘±ƒ^[ƒ“‚È‚Ç‚ÌŠT”O‚ª·‚è‚Ü‚ê‚Ä‚È‚¢
 public delegate void AnAction();
