@@ -1,9 +1,9 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //[CreateAssetMenu(menuName = "ScriptableObject/BattleAbility/Stall", fileName = "Stall")]
-public class Stall : AbilityIdentity//Ç†Ç∆ÇæÇµ
+public class Stall : AbilityIdentity//„ÅÇ„Å®„Å†„Åó
 {
     [SerializeField]private int _filterPriority=-100;
     public virtual List<ParamFilter<(int spd, int actPriority)>> SPDAndPriorityFilter_WhenSort(BattleUnit whosAbility, BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit, BattleField bf)
