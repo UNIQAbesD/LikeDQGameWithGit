@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +25,7 @@ public class BattleUnit
         _curHP -= acSkillEfc.hpDamage;
         _curMP -= acSkillEfc.mpDamage;
 
-        //buff‚ÌXVˆ—‚ğs‚¤
+        //buffã®æ›´æ–°å‡¦ç†ã‚’è¡Œã†
         foreach (BuffParam aSkillEfcBuff in acSkillEfc.buffParam)
         {
             if (aSkillEfcBuff.integrateID < 0) 

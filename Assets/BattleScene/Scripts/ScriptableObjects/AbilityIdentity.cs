@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -72,36 +72,36 @@ public class AbilityIdentity : ScriptableObject
         return new List<ParamFilter<int>>();
     }
 
-    //ActCmd‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //ActCmdã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterTurnEventFilter(BattleUnit whosAbility, BattleUnit whosTurn, BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
 
-    //ActCmd‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //ActCmdã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> BeforeActCmdEventFilter(BattleUnit whosAbility,(BattleUnit sUnit,SkillIdentity,BattleUnit oUnit) cmdData, BattleField bf) 
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
 
-    //ActCmd‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //ActCmdã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> AfterActCmdEventFilter(BattleUnit whosAbility, (BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData, BattleField bf)
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
-    //Round‚ªŠJn‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //RoundãŒé–‹å§‹ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> BeforeRoundEventFilter(BattleUnit whosAbility, BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
 
-    //Round‚ªI—¹‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //RoundãŒçµ‚äº†ã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterRoundEventFilter(BattleUnit whosAbility, BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
     
-    //applySkillEfc‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //applySkillEfcã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterOneTimeApplyEventFilter(BattleUnit whosAbility, List<AcSkillEfc> acSkillEfcs,BattleField bf)
     {
         return new List<ParamFilter<int>>();

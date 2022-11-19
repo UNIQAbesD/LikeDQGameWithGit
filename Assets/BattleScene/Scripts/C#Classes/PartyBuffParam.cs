@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 
 public class PartyBuffParam
 {
@@ -85,39 +85,39 @@ public class PartyBuffParam
     }
 
     //event---------------------------------------------------------------
-    //whosBuff‚ÌturnŠJn‚ÉŒÄ‚Ño‚³‚ê‚é
+    //whosBuffã®turné–‹å§‹æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> BeforeTurnEventFilter(BattleUnit whosTurn, BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
-    //whosBuff‚ÌturnI—¹‚ÉŒÄ‚Ño‚³‚ê‚é
+    //whosBuffã®turnçµ‚äº†æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterTurnEventFilter(BattleUnit whosTurn, BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
-    //whosBuff‚ªsUnit‚ÌActCmd‚ÉŒÄ‚Ño‚³‚ê‚é
+    //whosBuffãŒsUnitã®ActCmdæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> BeforeActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData, BattleField bf)
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
 
-    //whosBuff‚ªsUnit‚ÌActCmd‚ÉŒÄ‚Ño‚³‚ê‚é
+    //whosBuffãŒsUnitã®ActCmdæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> AfterActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData, BattleField bf)
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
 
-    //RoundŠJn‚Éê‚É‚¢‚éƒ†ƒjƒbƒg‚Ì‚Ç‚ê‚©‚ªwhosbuff‚È‚ç‚ÎŒÄ‚Ño‚³‚ê‚é
+    //Roundé–‹å§‹æ™‚ã«å ´ã«ã„ã‚‹ãƒ¦ãƒ‹ãƒƒãƒˆã®ã©ã‚Œã‹ãŒwhosbuffãªã‚‰ã°å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> BeforeRoundEventFilter(BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
-    //RoundŠJn‚Éê‚É‚¢‚éƒ†ƒjƒbƒg‚Ì‚Ç‚ê‚©‚ªwhosbuff‚È‚ç‚ÎŒÄ‚Ño‚³‚ê‚é
+    //Roundé–‹å§‹æ™‚ã«å ´ã«ã„ã‚‹ãƒ¦ãƒ‹ãƒƒãƒˆã®ã©ã‚Œã‹ãŒwhosbuffãªã‚‰ã°å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterRoundEventFilter(BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
-    //whosBuff‚ğoUnit‚Æ‚µ‚ÄapplySkillEfc‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    //whosBuffã‚’oUnitã¨ã—ã¦applySkillEfcã•ã‚ŒãŸã¨ãã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterOneTimeApplyEventFilter(List<AcSkillEfc> acSkillEfcs, BattleField bf)
     {
         return new List<ParamFilter<int>>();

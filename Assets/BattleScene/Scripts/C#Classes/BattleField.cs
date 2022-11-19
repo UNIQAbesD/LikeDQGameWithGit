@@ -1,11 +1,11 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
 
 
-//MP isDead Buff‚ÌŒp‘±ƒ^[ƒ“‚È‚Ç‚ÌŠT”O‚ª·‚è‚Ü‚ê‚Ä‚È‚¢
+//MP isDead Buffã®ç¶™ç¶šã‚¿ãƒ¼ãƒ³ãªã©ã®æ¦‚å¿µãŒç››ã‚Šè¾¼ã¾ã‚Œã¦ãªã„
 public delegate void AnAction();
 
 
@@ -126,7 +126,7 @@ public class BattleField
         }
     }
 
-    public void simpleActCmd((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)//EventFilter‚ª“®‚©‚È‚¢
+    public void simpleActCmd((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)//EventFilterãŒå‹•ã‹ãªã„
     {
         List<SkillEfcFunc> tempSkillEfcFuncs;
         SkillSubst skillSubst = cmdData.skill.skillSubst;
@@ -219,8 +219,8 @@ public class BattleField
     }
 
 
-    //ê‚Ìƒ†ƒjƒbƒg‚ª‚ÂbuffƒIƒuƒWƒFƒNƒg‚ª‚Âfilter‚Í‚»‚Ìƒ†ƒjƒbƒg‚ÌƒXƒe[ƒ^ƒXæ“¾‚ÉŒÄ‚Ño‚³‚ê‚é
-    //ê‚Ìƒ†ƒjƒbƒg‚ª‚Â“Á«ƒIƒuƒWƒFƒNƒg‚ª‚à‚Âfilter‚Í‚·‚×‚Ä‚Ìƒ†ƒjƒbƒg‚ÌƒXƒe[ƒ^ƒXæ“¾‚ÉŒÄ‚Ño‚³‚ê‚é
+    //å ´ã®ãƒ¦ãƒ‹ãƒƒãƒˆãŒæŒã¤buffã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæŒã¤filterã¯ãã®ãƒ¦ãƒ‹ãƒƒãƒˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
+    //å ´ã®ãƒ¦ãƒ‹ãƒƒãƒˆãŒæŒã¤ç‰¹æ€§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒã‚‚ã¤filterã¯ã™ã¹ã¦ã®ãƒ¦ãƒ‹ãƒƒãƒˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—æ™‚ã«å‘¼ã³å‡ºã•ã‚Œã‚‹
     //makeFilters------------------------------------------------------------------
     public List<ParamFilter<int>> MaxHPFilter_WhenCalcSkill(BattleUnit whosParamCalc, BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit)
     {
@@ -406,7 +406,7 @@ public class BattleField
 
 
 
-    //•Ö—˜ŠÖ”--------------------------------------------------------------------------------------------------
+    //ä¾¿åˆ©é–¢æ•°--------------------------------------------------------------------------------------------------
     public Type1 makeFilteredValue<Type1>( List<ParamFilter<Type1>> filters, Type1 value) 
     {
         Type1 ReturnValue=value;

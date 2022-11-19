@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -54,7 +54,7 @@ public class EnableByOtherMemValDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        // •\¦‚³‚ê‚Ä‚¢‚È‚¢ê‡ƒXƒy[ƒX‚ğ‹l‚ß‚é‚½‚ß-2‚ğ•Ô‚·
+        // è¡¨ç¤ºã•ã‚Œã¦ã„ãªã„å ´åˆã‚¹ãƒšãƒ¼ã‚¹ã‚’è©°ã‚ã‚‹ãŸã‚-2ã‚’è¿”ã™
         return getIsEnable(attribute as EnableByOtherMemValAttribute, property) ? EditorGUI.GetPropertyHeight(property): -2;
     }
 }

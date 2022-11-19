@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class Buff_StatusUP : BuffParam
@@ -85,7 +85,7 @@ public class Buff_StatusUP : BuffParam
         }
         else 
         {
-            Debug.Log($"TargetStat‚ª0~4‚ÌŠÔ‚É‚ ‚è‚Ü‚¹‚ñ:{targetStatus}");
+            Debug.Log($"TargetStatãŒ0~4ã®é–“ã«ã‚ã‚Šã¾ã›ã‚“:{targetStatus}");
             _targetStatus = stat.ATK;
         }
         _maxRank = 6;

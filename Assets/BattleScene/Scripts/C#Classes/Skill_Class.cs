@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -49,31 +49,31 @@ public class SkillSubst
 
     //event---------------------------------------------------------------
 
-    //cmdData‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éskillIdentity‚Ìskillsubst‚Ìfilter‚ªŒÄ‚Ño‚³‚ê‚é
+    //cmdDataã«å«ã¾ã‚Œã¦ã„ã‚‹skillIdentityã®skillsubstã®filterãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> BeforeActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill,BattleUnit oUnit) cmdData, BattleField bf)
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
 
-    //cmdData‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éskillIdentity‚Ìskillsubst‚Ìfilter‚ªŒÄ‚Ño‚³‚ê‚é
+    //cmdDataã«å«ã¾ã‚Œã¦ã„ã‚‹skillIdentityã®skillsubstã®filterãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> AfterActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill,BattleUnit oUnit) cmdData, BattleField bf)
     {
         return new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
     }
 
-    //cmdData‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éskillIdentity‚Ìskillsubst‚Ìfilter‚ªŒÄ‚Ño‚³‚ê‚é
+    //cmdDataã«å«ã¾ã‚Œã¦ã„ã‚‹skillIdentityã®skillsubstã®filterãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> BeforeRoundEventFilter(BattleUnit sUnit,BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
 
-    //cmdData‚ÉŠÜ‚Ü‚ê‚Ä‚¢‚éskillIdentity‚Ìskillsubst‚Ìfilter‚ªŒÄ‚Ño‚³‚ê‚é
+    //cmdDataã«å«ã¾ã‚Œã¦ã„ã‚‹skillIdentityã®skillsubstã®filterãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
     public virtual List<ParamFilter<int>> AfterRoundEventFilter(BattleUnit sUnit,BattleField bf)
     {
         return new List<ParamFilter<int>>();
     }
     
-    //applyskillEfc‚³‚ê‚éskillEfc‚ÌŒ³‚Æ‚È‚Á‚½skillSubst‚ğ—p‚¢‚é
+    //applyskillEfcã•ã‚Œã‚‹skillEfcã®å…ƒã¨ãªã£ãŸskillSubstã‚’ç”¨ã„ã‚‹
 
 }
 
@@ -184,8 +184,8 @@ public class ExSkillEfc
     {
         AcSkillEfc acSkillEfc = new AcSkillEfc();
 
-        Debug.Assert(sUnit != null, $"ExSkillEfc‚ÅsUnit==null");
-        Debug.Assert(oUnit != null, $"ExSkillEfc‚ÅoUnit==null");
+        Debug.Assert(sUnit != null, $"ExSkillEfcã§sUnit==null");
+        Debug.Assert(oUnit != null, $"ExSkillEfcã§oUnit==null");
         acSkillEfc.sUnit = sUnit;
         acSkillEfc.oUnit = oUnit;
 

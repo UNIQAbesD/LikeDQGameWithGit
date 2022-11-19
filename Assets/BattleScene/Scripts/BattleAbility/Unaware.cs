@@ -1,9 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //[CreateAssetMenu(menuName = "ScriptableObject/BattleAbility/UnAware", fileName = "Unaware")]
-public class Unaware : AbilityIdentity//�Ă�˂�
+public class Unaware : AbilityIdentity//てんねん
 {
     [SerializeField]private int _filterPriority=-100;
     public override List<ParamFilter<int>> ATKFilter_WhenCalcSkill(BattleUnit whosParamCalc, BattleUnit whosAbility, BattleUnit sUnit, SkillSubst useSkillSubst, BattleUnit oUnit, BattleField bf)

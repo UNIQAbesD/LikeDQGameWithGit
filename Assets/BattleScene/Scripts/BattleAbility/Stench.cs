@@ -1,9 +1,9 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/BattleAbility/Stench", fileName = "Stench")]
-public class Stench : AbilityIdentity//Ç†Ç≠ÇµÇ„Ç§
+public class Stench : AbilityIdentity//„ÅÇ„Åè„Åó„ÇÖ„ÅÜ
 {
     [SerializeField] private int _filterPriority = -100;
     public override List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter(BattleUnit whosAbility, BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit, BattleField bf)
