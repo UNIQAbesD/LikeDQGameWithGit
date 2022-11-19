@@ -76,7 +76,7 @@ public class BasicSkillIdentity : SkillIdentity
             SkillEfcFunc_deligate tempSkillEfcFunc;
             if (funcType == FuncType.Attack)
             {
-                if (!isSpecial)//•¨—UŒ‚ 
+                if (!isSpecial)//ç‰©ç†æ”»æ’ƒ 
                 {
                     tempSkillEfcFunc = new SkillEfcFunc_deligate(
                     (BattleUnit sUnit, BattleUnit oUnit, BattleField bf) =>
@@ -94,7 +94,7 @@ public class BasicSkillIdentity : SkillIdentity
                         return exSkillEfc;
                     }, addEfcTrigger);
                 }
-                else//“ÁêUŒ‚
+                else//ç‰¹æ®Šæ”»æ’ƒ
                 {
                     tempSkillEfcFunc = new SkillEfcFunc_deligate(
                     (BattleUnit sUnit, BattleUnit oUnit, BattleField bf) =>
@@ -135,7 +135,7 @@ public class BasicSkillIdentity : SkillIdentity
                         buffParam = new Buff_StatusUP(4);
                         break;
                     default:
-                        Debug.Log("buffType‚Ìw’è‚ª‘z’èŠO");
+                        Debug.Log("buffTypeã®æŒ‡å®šãŒæƒ³å®šå¤–");
                         buffParam = new Buff_StatusUP(0);
                         break;
                 }

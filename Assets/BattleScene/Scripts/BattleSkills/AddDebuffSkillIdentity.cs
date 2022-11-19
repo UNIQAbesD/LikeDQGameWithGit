@@ -98,7 +98,7 @@ public class AddDebuffSkillIdentity : SkillIdentity
                                         buffParam = new Buff_StatusUP( 4);
                                         break;
                                     default:
-                                        Debug.Log("AdditionalBuff‚Ìw’è‚ª‘z’èŠO");
+                                        Debug.Log("AdditionalBuffã®æŒ‡å®šãŒæƒ³å®šå¤–");
                                         buffParam = new Buff_StatusUP( 0);
                                         break;
                                 }
