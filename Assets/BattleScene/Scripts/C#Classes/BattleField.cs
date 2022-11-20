@@ -5,11 +5,11 @@ using System.Linq;
 using System;
 
 
-//MP isDead Buffの継続ターンなどの概念が盛り込まれてない
+
 public delegate void AnAction();
 
 
-
+//MP isDead Buffの継続ターンなどの概念が盛り込まれてない
 public class BattleField
 {
     private List<BattleUnit> _party1;
@@ -17,6 +17,10 @@ public class BattleField
 
     private List<BattleUnit> _party2;
     public List<BattleUnit> party2 { get { return _party2; } }
+
+    List<PartyBuffParam> _allPartyBuffs;
+    List<PartyBuffParam> _party1Buffs;
+    List<PartyBuffParam> _party2Buffs;
 
     public int RoundCount { private set; get; }
     public int turnCount { private set; get; }
@@ -82,7 +86,7 @@ public class BattleField
 
     private void makeCmdData() 
     {
-        List<(int spd, int priority, int index)> spdAndPrioritys = new List<(int spd, int priority, int index)>();
+        List<(int spd, int priority, int index)> spdAndPrioritys = new List<(int spd, int priority, int index)>();//どのcmdDataに対応するSPDとPriorityなのか判断するため、indexも含める
         List<ParamFilter<(int spd, int priority)>> spdAndPriorityFilter;
         (int spd, int priority) tempSPDAndPrioriy;
         for (int i = 0; i < cmdDatas.Count; i++)
@@ -163,6 +167,7 @@ public class BattleField
         foreach (AcSkillEfc acSkillEfc in acSkillEfcs) 
         {
             acSkillEfc.oUnit.applyAcSkillEfc(acSkillEfc);
+
         }
 
         List<ParamFilter<int>> applyEventFilters = AfterOneTimeApplyEventFilter(acSkillEfcs);
@@ -170,6 +175,52 @@ public class BattleField
         foreach (ParamFilter<int> aEvent in applyEventFilters)
         {
             aEvent.fun(0, applyEventFilters);
+        }
+    }
+
+    private void setPartyBuff(PartyBuffParam partyBuffParam)
+    {
+        List<PartyBuffParam> targetPartyBuffParams= _allPartyBuffs;
+        switch (partyBuffParam.whichPartysBuff)
+        {
+            case 0://party1/2共用バフ
+                targetPartyBuffParams = _allPartyBuffs;
+                break;
+            case 1://party1バフ
+                targetPartyBuffParams = _party1Buffs;
+                break;
+            case 2://party2バフ
+                targetPartyBuffParams = _party2Buffs;
+                break;
+            default:
+                throw new Exception($"partyBuffParam.whichPartysBuffが想定外の値を撮っています:{partyBuffParam.whichPartysBuff}");
+                break;
+
+        }
+        if (partyBuffParam.integrateID < 0)
+        {
+            targetPartyBuffParams.Add(partyBuffParam);
+        }
+        else
+        {
+            bool isIntegrated = false;
+            for (int i = 0; i < targetPartyBuffParams.Count; i++)
+            {
+                //BuffParam aUnitBuff=_buffParams[i];
+                if (targetPartyBuffParams[i].integrateID == partyBuffParam.integrateID)
+                {
+                    targetPartyBuffParams[i] = targetPartyBuffParams[i].whenApplySameIDBuff(partyBuffParam);
+                    targetPartyBuffParams[i].whichPartysBuff = partyBuffParam.whichPartysBuff;
+                    isIntegrated = true;
+                    break;
+
+                }
+            }
+            if (!isIntegrated)
+            {
+                targetPartyBuffParams.Add(partyBuffParam);
+                partyBuffParam.whichPartysBuff = partyBuffParam.whichPartysBuff;
+            }
         }
     }
 
@@ -295,7 +346,7 @@ public class BattleField
 
 
 
-    public virtual List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter( BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit)
+    public List<ParamFilter<AcSkillEfc>> AcSkillEfcFilter( BattleUnit sUnit, SkillSubst useSkill, BattleUnit oUnit)
     {
         List<ParamFilter<AcSkillEfc>> filters = new List<ParamFilter<AcSkillEfc>>();
         filters= makeFilter_BuffAndAbility((buff) => buff.AcSkillEfcFilter(sUnit, useSkill, oUnit, this),
@@ -308,7 +359,7 @@ public class BattleField
 
 
     //WhenSort----------------------------------------------------------
-    public virtual List<ParamFilter<(int spd, int actPriority)>> SPDAndPriorityFilter_WhenSort(BattleUnit sUnit, SkillSubst useSkill ,BattleUnit oUnit)
+    public List<ParamFilter<(int spd, int actPriority)>> SPDAndPriorityFilter_WhenSort(BattleUnit sUnit, SkillSubst useSkill ,BattleUnit oUnit)
     {
         List<ParamFilter<(int spd, int actPriority)>> filters = new List<ParamFilter<(int spd, int actPriority)>>();
         filters= makeFilter_BuffAndAbility((buff)=>buff.SPDAndPriorityFilter_WhenSort(sUnit, useSkill, oUnit, this),
@@ -336,7 +387,7 @@ public class BattleField
         return filters;
     }
 
-    public virtual List<ParamFilter<int>> BeforeRoundEventFilter()
+    public List<ParamFilter<int>> BeforeRoundEventFilter()
     {
         List<ParamFilter<int>> filters = new List<ParamFilter<int>>();
         filters = makeFilter_BuffAndAbility((buff) => buff.BeforeRoundEventFilter(this),
@@ -350,7 +401,7 @@ public class BattleField
 
     }
 
-    public virtual List<ParamFilter<int>> BeforeTurnEventFilter(BattleUnit whosTurn)
+    public List<ParamFilter<int>> BeforeTurnEventFilter(BattleUnit whosTurn)
     {
         List<ParamFilter<int>> filters = new List<ParamFilter<int>>();
         filters = makeFilter_BuffAndAbility((buff) => buff.BeforeTurnEventFilter(whosTurn, this),
@@ -359,7 +410,7 @@ public class BattleField
 
     }
 
-    public virtual List<ParamFilter<int>> AfterTurnEventFilter(BattleUnit whosTurn)
+    public List<ParamFilter<int>> AfterTurnEventFilter(BattleUnit whosTurn)
     {
         List<ParamFilter<int>> filters = new List<ParamFilter<int>>();
         filters = makeFilter_BuffAndAbility((buff) => buff.AfterTurnEventFilter(whosTurn, this),
@@ -367,7 +418,7 @@ public class BattleField
         return filters;
 
     }
-    public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> BeforeActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)
+    public List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> BeforeActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)
     {
         List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> filters = new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
         filters = makeFilter_BuffAndAbility((buff) => buff.BeforeActCmdEventFilter(cmdData, this),
@@ -378,7 +429,7 @@ public class BattleField
 
     }
 
-    public virtual List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> AfterActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)
+    public List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> AfterActCmdEventFilter((BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit) cmdData)
     {
         List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>> filters = new List<ParamFilter<(BattleUnit sUnit, SkillIdentity skill, BattleUnit oUnit)>>();
         filters = makeFilter_BuffAndAbility((buff) => buff.AfterActCmdEventFilter(cmdData, this),
