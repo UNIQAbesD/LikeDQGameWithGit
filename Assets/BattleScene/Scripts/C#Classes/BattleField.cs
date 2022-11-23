@@ -6,12 +6,14 @@ using System;
 
 
 
-public delegate void AnAction();
+//public delegate void AnAction();
 
 
 //MP isDead Buffの継続ターンなどの概念が盛り込まれてない
 public class BattleField
 {
+    public Queue<string> MessageQueue;
+
     private List<BattleUnit> _party1;
     public List<BattleUnit> party1 { get { return _party1; } }
 
