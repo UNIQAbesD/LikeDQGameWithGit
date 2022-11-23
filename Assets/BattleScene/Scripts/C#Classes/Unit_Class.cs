@@ -35,19 +35,37 @@ public class BattleUnit
             else 
             {
                 bool isIntegrated = false;
+                /*
                 for (int i=0;i< acSkillEfc.buffParam.Count;i++)
                 {
                     BuffParam aUnitBuff=acSkillEfc.buffParam[i];
                     if (aUnitBuff.integrateID == aSkillEfcBuff.integrateID) 
                     {
+                        
                         acSkillEfc.buffParam[i]=aUnitBuff.whenApplySameIDBuff(aSkillEfcBuff);
-                        isIntegrated=true;
+                        acSkillEfc.buffParam[i].whosBuff = this;
+                        isIntegrated =true;
                         break;
+                        
+                    }
+                }
+                */
+                for (int i=0;i< _buffParams.Count;i++)
+                {
+                    //BuffParam aUnitBuff=_buffParams[i];
+                    if (_buffParams[i].integrateID == aSkillEfcBuff.integrateID) 
+                    {
+                        _buffParams[i]= _buffParams[i].whenApplySameIDBuff(aSkillEfcBuff);
+                        _buffParams[i].whosBuff = this;
+                        isIntegrated =true;
+                        break;
+                        
                     }
                 }
                 if (!isIntegrated) 
                 {
                     _buffParams.Add(aSkillEfcBuff);
+                    aSkillEfcBuff.whosBuff = this;
                 }
             }
         }

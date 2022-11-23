@@ -14,18 +14,18 @@ public class PartyBuffParam
     protected bool _isPermanence = false;
     public bool isPermanence { get { return _isPermanence; } }
 
-    protected CostBuffTurnTiming _costBuffTurnTiming;
-    public CostBuffTurnTiming costBuffTurnTiming { get { return _costBuffTurnTiming; } }
+    protected CostPartyBuffTurnTiming _costPartyBuffTurnTiming;
+    public CostPartyBuffTurnTiming costPartyBuffTurnTiming { get { return _costPartyBuffTurnTiming; } }
 
     protected int _integrateID = -1;
     public int integrateID { get { return _integrateID; } }
 
-    public BattleUnit whosBuff;
+    public int whichPartysBuff;
     public int lastTurn;
     public int rank;
 
 
-    public virtual PartyBuffParam whenApplySameIDBuff(BuffParam skillEfcParam) { return this; }
+    public virtual PartyBuffParam whenApplySameIDBuff(PartyBuffParam skillEfcParam) { return this; }
 
 
     //WhenCalcSkill-----------------------------------------------------------------
@@ -122,7 +122,7 @@ public class PartyBuffParam
     {
         return new List<ParamFilter<int>>();
     }
-    public PartyBuffParam(string Name, int maxRank, int minRank, bool isPermanence, int integrateID, CostBuffTurnTiming costBuffTurnTiming)
+    public PartyBuffParam(string Name, int maxRank, int minRank, bool isPermanence, int integrateID, CostPartyBuffTurnTiming costPartyBuffTurnTiming)
     {
         //identity = buffIdentity;
         this._Name = Name;
@@ -130,9 +130,16 @@ public class PartyBuffParam
         this._minRank = minRank;
         this._isPermanence = isPermanence;
         this._integrateID = integrateID;
-        this._costBuffTurnTiming = costBuffTurnTiming;
+        this._costPartyBuffTurnTiming = costPartyBuffTurnTiming;
         lastTurn = 0;
         rank = 0;
     }
-    public PartyBuffParam() : this("None", 1, 0, false, -1, CostBuffTurnTiming.RoundEnd) { }
+    public PartyBuffParam() : this("None", 1, 0, false, -1, CostPartyBuffTurnTiming.RoundEnd) { }
+}
+
+public enum CostPartyBuffTurnTiming
+{
+    TurnEnd,
+    RoundEnd,
+    ActCmd
 }

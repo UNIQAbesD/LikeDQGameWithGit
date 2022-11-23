@@ -16,6 +16,7 @@ public class SkillSubst
     public BuffResistElement buffElement = BuffResistElement.None;
     public SkillOUnitType efcOUnitType=SkillOUnitType.OneFoe;
     public SkillSubst nextSkill;
+
     public virtual List<SkillEfcFunc> skillEfcFuncs { get { return new List<SkillEfcFunc>(); } }
     
     public virtual List<ParamFilter<List<(BattleUnit, SkillIdentity, BattleUnit)>>> cmdFilters ()
@@ -178,6 +179,11 @@ public class ExSkillEfc
     public List<BuffParam> buffParams { get { return new List<BuffParam>(_buffParams); } }
     private List<float> _buffPossiblity;
     public List<float> buffPossiblity { get { return new List<float>(_buffPossiblity); } }
+    private List<PartyBuffParam> _partyBuffParams;
+    public List<PartyBuffParam> partyBuffParams { get { return new List<PartyBuffParam>(_partyBuffParams);}}
+    private List<float> _partyBuffPossiblity;
+    public List<float> partyBuffPossiblity { get { return new List<float>(_partyBuffPossiblity); } }
+
 
 
     public AcSkillEfc makeAcSkillEfc() 
@@ -220,7 +226,7 @@ public class ExSkillEfc
 
         for (int i=0;i<_buffParams.Count;i++) 
         {
-            if (_buffParams[i].rank != 0 & _buffParams[i].lastTurn != 0) 
+            if (_buffParams[i].rank != 0 & (_buffParams[i].lastTurn != 0 | _buffParams[i].isPermanence)) 
             {
                 if (_buffPossiblity[i] * 100 > UnityEngine.Random.Range(0, 100)) 
                 {
@@ -229,6 +235,18 @@ public class ExSkillEfc
             }
         }
 
+        Debug.Assert(_partyBuffPossiblity.Count == _partyBuffParams.Count);
+
+        for (int i = 0; i < _partyBuffParams.Count; i++)
+        {
+            if (_partyBuffParams[i].rank != 0 & _partyBuffParams[i].lastTurn != 0| _partyBuffParams[i].isPermanence)
+            {
+                if (_partyBuffPossiblity[i] * 100 > UnityEngine.Random.Range(0, 100))
+                {
+                    acSkillEfc._partyBuffParams.Add(_partyBuffParams[i]);
+                }
+            }
+        }
         return acSkillEfc;
     }
 
@@ -251,14 +269,13 @@ public class ExSkillEfc
         }
         _buffPossiblity.RemoveAt(buffIndex);  
     }
-    public void AddBuff(int buffIndex,BuffParam buffParam, float possivility)
+    public void AddBuff(int buffIndex,BuffParam buffParam, float possibility)
     {
         _buffParams[buffIndex] =(buffParam);
-        _buffPossiblity[buffIndex] = (possivility);
+        _buffPossiblity[buffIndex] = (possibility);
     }
     public void RemoveAtBuff(int buffIndex)
     {
-        
         buffParams.RemoveAt(buffIndex);
         _buffPossiblity.RemoveAt(buffIndex);
     }
@@ -290,6 +307,7 @@ public class AcSkillEfc
     public int mpDamage;
     public bool isHit;
     public List<BuffParam> buffParam;
+    public List<PartyBuffParam> _partyBuffParams;
 
     public AcSkillEfc() 
     {
