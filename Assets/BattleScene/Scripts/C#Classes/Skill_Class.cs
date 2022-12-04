@@ -347,7 +347,7 @@ public enum SkillCategory
     None,
     Phisical,
     Magical,
-    Status,
+    Status
 }
 
 public enum AdditionalEfcTrigger

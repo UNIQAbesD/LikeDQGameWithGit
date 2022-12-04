@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef7be13b12bc4841b19015674f8d77b, type: 3}
+  m_Name: ArmorBreak
+  m_EditorClassIdentifier: 
+  _Name: "\u304B\u3076\u3068\u308F\u308A"
+  minRepeat: 1
+  maxRepeat: 1
+  mp: 5
+  skillElement: 1
+  skillCategory: 1
+  buffElement: 0
+  efcOUnitType: 2
+  skillEfcFuncDatas:
+  - funcType: 1
+    accuracy: 1
+    addEfcTrigger: 1
+    power: 70
+    isSpecial: 1
+    buffType: 0
+    buffTurn: 0
+    buffRank: 0
+    possibility: 0
+    HealPower: 0
+    basicHealType: 0
+  - funcType: 2
+    accuracy: 1
+    addEfcTrigger: 0
+    power: 0
+    isSpecial: 0
+    buffType: 2
+    buffTurn: 3
+    buffRank: 2
+    possibility: 1
+    HealPower: 0
+    basicHealType: 0
